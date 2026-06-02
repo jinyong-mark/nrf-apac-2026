@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NRF APAC 2026 · 인사이트 연결</title>
+<style>
+:root{
+  --ink:#0f172a;--muted:#64748b;--line:#e2e8f0;--bg:#f1f5f9;--card:#fff;
+  --red:#dc2626;--blue:#2563eb;--teal:#0d9488;--violet:#7c3aed;--green:#059669;--amber:#d97706;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",sans-serif;color:var(--ink);background:var(--bg);line-height:1.7}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 60%,#0c4a6e 100%);color:#fff;padding:44px 28px 32px}
+.hero-inner{max-width:1080px;margin:0 auto}
+.kicker{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#94a3b8;margin-bottom:10px}
+.hero h1{font-size:clamp(24px,4vw,42px);font-weight:900;line-height:1.1;margin-bottom:8px}
+.hero p{color:#94a3b8;font-size:15px;margin-bottom:18px}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px}
+.meta-tag{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:999px;font-size:12px;font-weight:700;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#e2e8f0}
+
+/* SECONDARY NAV */
+.sub-nav{background:rgba(248,250,252,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:0 28px;position:sticky;top:0;z-index:50}
+.sub-nav-inner{max-width:1080px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:8px 0}
+.sub-nav a{white-space:nowrap;padding:6px 12px;border-radius:999px;font-size:13px;font-weight:700;color:#475569}
+.sub-nav a:hover{background:#f1f5f9;text-decoration:none}
+
+/* MAIN */
+main{max-width:1080px;margin:0 auto;padding:28px 24px 80px}
+
+/* GRID / CARD */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.card{border-radius:14px;padding:14px;border-left:3px solid}
+.c-red{background:#fef2f2;border-color:#dc2626}.c-blue{background:#eff6ff;border-color:#2563eb}
+.c-green{background:#f0fdf4;border-color:#059669}.c-violet{background:#f5f3ff;border-color:#7c3aed}
+.c-amber{background:#fffbeb;border-color:#d97706}.c-teal{background:#f0fdfa;border-color:#0d9488}
+.c-slate{background:#f8fafc;border-color:#94a3b8}
+.c-title{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+.c-red .c-title{color:#dc2626}.c-blue .c-title{color:#1d4ed8}.c-green .c-title{color:#166534}
+.c-violet .c-title{color:#7c3aed}.c-amber .c-title{color:#92400e}.c-teal .c-title{color:#0f766e}
+.c-slate .c-title{color:#475569}
+.c-body{font-size:13px;color:#334155;line-height:1.6}
+.c-body strong{color:#0f172a}
+.divider{height:1px;background:var(--line);margin:20px 0}
+
+/* INSIGHT TAB */
+.insight-section{margin-bottom:40px}
+.insight-section h2{font-size:22px;font-weight:900;margin-bottom:6px}
+.insight-section .sub{font-size:14px;color:var(--muted);margin-bottom:20px}
+
+/* Knowledge Map */
+.kmap{display:grid;grid-template-columns:1fr 60px 1fr;align-items:center;gap:0;margin-bottom:14px}
+.kmap-left{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px}
+.kmap-arrow{text-align:center;font-size:22px;color:#94a3b8}
+.kmap-right{border-radius:16px;padding:14px}
+.kmap-right.opp{background:#f0fdf4;border:1px solid #bbf7d0}
+.kmap-right.risk{background:#fef2f2;border:1px solid #fecaca}
+.kmap-right.action{background:#eff6ff;border:1px solid #bfdbfe}
+.kmap-tag{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+.opp .kmap-tag{color:#059669}.risk .kmap-tag{color:#dc2626}.action .kmap-tag{color:#2563eb}
+.kmap-text{font-size:13px;color:#334155;line-height:1.6}
+.kmap-text strong{color:#0f172a}
+
+/* Opportunity matrix */
+.matrix{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
+.matrix-cell{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px}
+.matrix-head{font-size:13px;font-weight:900;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.matrix-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.matrix-list li{font-size:13px;color:#334155;padding-left:16px;position:relative;line-height:1.5}
+.matrix-list li::before{content:"·";position:absolute;left:4px;font-weight:900;color:#64748b}
+
+/* Partnership table */
+.ptable{width:100%;border-collapse:collapse;background:#fff;border-radius:18px;overflow:hidden;border:1px solid var(--line)}
+.ptable th{background:#f8fafc;padding:11px 14px;font-size:12px;font-weight:900;color:#334155;text-align:left;border-bottom:1px solid var(--line)}
+.ptable td{padding:11px 14px;font-size:13px;color:#334155;border-bottom:1px solid var(--line);vertical-align:top}
+.ptable tr:last-child td{border-bottom:none}
+.ptable tr:hover td{background:#f8fafc}
+.p-badge{display:inline-flex;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:800}
+.p1{background:#fef2f2;color:#dc2626;border:1px solid #fecaca}
+.p2{background:#fff7ed;color:#c2410c;border:1px solid #fed7aa}
+.p3{background:#f8fafc;color:#64748b;border:1px solid #e2e8f0}
+
+/* Disclaimer */
+.disclaimer{background:#fff;border:1px solid var(--line);border-left:4px solid #7c3aed;border-radius:12px;padding:16px 20px;margin-bottom:28px;font-size:14px;color:#475569;line-height:1.7}
+.disclaimer strong{color:#0f172a}
+
+@media(max-width:680px){
+  .grid,.matrix{grid-template-columns:1fr}
+  .kmap{grid-template-columns:1fr;gap:8px}
+  .kmap-arrow{transform:rotate(90deg)}
+  main{padding:20px 14px 60px}
+}
+@media print{.sub-nav{display:none}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="kicker">세션 내용 × 패션·물류·AI 기술 연결 분석</div>
+    <h1>NRF APAC 2026 · <span style="color:#7dd3fc">인사이트 연결</span></h1>
+    <p>세션 발표 내용을 패션·물류·AI 기술·비즈니스 맥락과 연결한 청취자 관점 분석</p>
+    <div class="meta-row">
+      <span class="meta-tag">📅 June 2–4, 2026</span>
+      <span class="meta-tag">📍 Marina Bay Sands, Singapore</span>
+      <span class="meta-tag">💡 인사이트 분석</span>
+    </div>
+  </div>
+</header>
+
+<!-- STICKY NAV -->
+<nav class="sub-nav">
+  <div class="sub-nav-inner">
+    <a href="#i-themes">공통 주제</a>
+    <a href="#i-map">세션별 연결지도</a>
+    <a href="#i-opp">기회영역</a>
+    <a href="#i-partners">파트너십 검토 대상</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    ⚠️ <strong>안내:</strong> 이 문서는 세션 발표 내용을 바탕으로 패션·물류·AI 기술 및 비즈니스 맥락과 연결한 분석입니다. 발표자의 직접 발언이 아닌 청취자 관점의 해석입니다.
+  </div>
+
+  <!-- 1. 공통 주제 -->
+  <div class="insight-section" id="i-themes">
+    <h2>5개 세션을 관통하는 공통 주제</h2>
+    <div class="sub">세션 내용을 가로로 읽었을 때 공통으로 등장하는 핵심 개념</div>
+    <div class="grid">
+      <div class="card c-red">
+        <div class="c-title">① Agentic AI — 모든 세션의 중심</div>
+        <div class="c-body">S2(DFI) 탈중개화 리스크 · S3(RELEX) 공급망 에이전트 · S4(Google) Agentic Enterprise · S1(LVMH) 과잉 개인화 경고까지. <strong>AI가 결정·실행하는 자율 시스템</strong>이 리테일 전반을 재편하는 핵심 축.</div>
+      </div>
+      <div class="card c-blue">
+        <div class="c-title">② 데이터 기반(Data Foundation)의 선결</div>
+        <div class="c-body">S4 Google "AI 품질 = 데이터 품질" · S5 MUJI "분산된 마스터 데이터가 모든 문제의 근원" · S3 RELEX "Planner Diagnostics = 데이터 기반 제도적 지식". <strong>AI 도입 전 데이터 거버넌스 구축이 공통 전제조건.</strong></div>
+      </div>
+      <div class="card c-violet">
+        <div class="c-title">③ 글로벌 표준 vs. 지역 자율</div>
+        <div class="c-body">S5 MUJI "Global Standard Domains + Regional Flexible Domains" 이중 구조. S1 LVMH "글로벌 브랜드 이미지 일관성 유지 vs. 현지 크리에이티브 자율". 글로벌 확장 기업의 공통 딜레마와 해법.</div>
+      </div>
+      <div class="card c-amber">
+        <div class="c-title">④ 사람 + AI의 역할 분리</div>
+        <div class="c-body">S3 RELEX "AI가 중노동, 플래너가 책임·관계" · S2 DFI "FOBO에서 결단력 있는 실행으로" · S4 Google 4단계 프레임워크. <strong>AI가 대체하는 것이 아니라 사람의 역할을 고부가가치 영역으로 이동시킴.</strong></div>
+      </div>
+      <div class="card c-green">
+        <div class="c-title">⑤ 신뢰(Trust)의 다층적 의미</div>
+        <div class="c-body">S2 DFI "소비자 신뢰 = 사이버 보안 + 데이터 보호" · S5 MUJI "신뢰할 수 있는 마스터 데이터" · S3 RELEX "블랙박스 아닌 설명 가능한 AI". 리테일 AI 시대에 신뢰는 기술 전략의 핵심 설계 원칙.</div>
+      </div>
+      <div class="card c-teal">
+        <div class="c-title">⑥ 아시아가 글로벌 혁신 선도</div>
+        <div class="c-body">S1 LVMH "가장 창의적인 협업 = 아시아" · S2 DFI "APAC 위계문화 특유의 사이버 취약점" · S5 MUJI "SEA 각국 특화 공급망 설계" · S6 "동남아 F&B가 오프라인 몰 혁신 선도". 아시아가 단순 시장이 아닌 혁신의 발신지.</div>
+      </div>
+      <div class="card c-amber">
+        <div class="c-title">⑦ 오프라인 리테일의 역할 재정의</div>
+        <div class="c-body">S6 HIPPINDO+AEON "기술보다 커뮤니티·경험이 오프라인의 차별적 가치" · S1 LVMH "물리적 리테일은 아시아에서 계속 혁신 중" · S4 Google "AI 시대에도 오프라인 트래픽 증가". 오프라인은 쇠퇴가 아닌 역할 재정의 중.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 세션별 연결지도 -->
+  <div class="insight-section" id="i-map">
+    <h2>세션 × 패션·물류·AI 연결지도</h2>
+    <div class="sub">각 세션의 핵심 내용이 패션 플랫폼·물류·AI 기술 맥락에서 어떤 의미를 갖는지</div>
+
+    <div class="kmap">
+      <div class="kmap-left"><strong>S1 · Luxury Retail</strong><br><span style="font-size:13px;color:#64748b">Demand vs. Desire · 엔터테인먼트 브랜딩 · AI 과잉 개인화 경고</span></div>
+      <div class="kmap-arrow">→</div>
+      <div class="kmap-right opp"><div class="kmap-tag">패션 플랫폼 적용점</div><div class="kmap-text">큐레이션 커머스는 소비자가 요청하기 전에 욕망을 만드는 Desire 모델로 작동해야 함. 추천 알고리즘의 과도한 개인화가 플랫폼의 트렌드 확산력을 약화시킬 수 있다는 역설.</div></div>
+    </div>
+    <div class="kmap">
+      <div class="kmap-left"><strong>S2 · Consumer Trust</strong><br><span style="font-size:13px;color:#64748b">Agentic AI 탈중개화 · 사이버보안 · R-HISAC</span></div>
+      <div class="kmap-arrow">→</div>
+      <div class="kmap-right risk"><div class="kmap-tag">리스크 인식</div><div class="kmap-text">AI 어시스턴트가 구매를 중개하면 플랫폼이 소비자와 브랜드 사이에서 소외됨. 로열티 프로그램과 고유한 고객 데이터가 탈중개화를 막는 핵심 방어 수단.</div></div>
+    </div>
+    <div class="kmap">
+      <div class="kmap-left"><strong>S3 · Woolworths+RELEX</strong><br><span style="font-size:13px;color:#64748b">AI 보충 자동화 · 재난 시나리오 모델링 · RELEX Open</span></div>
+      <div class="kmap-arrow">→</div>
+      <div class="kmap-right opp"><div class="kmap-tag">물류 AI 적용점</div><div class="kmap-text">대규모 멀티채널 재고 보충 자동화의 실증 사례. 시즌 교체·트렌드 급변이라는 패션 특유의 수요 변동에 동일 아키텍처 적용 가능성 검토 가치 높음.</div></div>
+    </div>
+    <div class="kmap">
+      <div class="kmap-left"><strong>S4 · Google Agentic</strong><br><span style="font-size:13px;color:#64748b">Macy's AI 에이전트 · 소비자 여정 전체 · 데이터 기반</span></div>
+      <div class="kmap-arrow">→</div>
+      <div class="kmap-right action"><div class="kmap-tag">기술 파트너십 검토</div><div class="kmap-text">검색·추천·에이전트를 단일 플랫폼으로 제공. 패션 맥락 이해 검색("청량한 여름 데이트룩")과 구매 후 스타일링 지원까지 연결 가능한 기술 스택.</div></div>
+    </div>
+    <div class="kmap">
+      <div class="kmap-left"><strong>S6 · Physical CX</strong><br><span style="font-size:13px;color:#64748b">F&B 앵커 전략 · 커뮤니티 · 기술 vs. 감성</span></div>
+      <div class="kmap-arrow">→</div>
+      <div class="kmap-right opp"><div class="kmap-tag">오프라인 스토어 설계</div><div class="kmap-text">오프라인 매장이 살아남는 핵심은 기술이 아니라 커뮤니티·경험·체류 시간. F&B·문화 체험 등 목적지(Destination) 기능 없이는 단순 상품 판매 매장으로 트래픽 확보 어려움.</div></div>
+    </div>
+    <div class="kmap">
+      <div class="kmap-left"><strong>S5 · MUJI + Stibo</strong><br><span style="font-size:13px;color:#64748b">1,474개 매장 PIM · Global/Regional 이중 구조 · IT가 사일로 연결</span></div>
+      <div class="kmap-arrow">→</div>
+      <div class="kmap-right opp"><div class="kmap-tag">글로벌 확장 프레임</div><div class="kmap-text">글로벌 표준(브랜드 온보딩·물류 정책)은 통일하고, 현지화(마케팅·EC 플랫폼)는 자율에 맡기는 이중 구조. 수백 개 파트너 브랜드의 상품 데이터 표준화가 AI 도입의 전제조건.</div></div>
+    </div>
+  </div>
+
+  <!-- 3. 기회 영역 -->
+  <div class="insight-section" id="i-opp">
+    <h2>세션에서 도출된 기회 영역</h2>
+    <div class="sub">세션 내용을 바탕으로 패션·물류·플랫폼 비즈니스 관점에서 정리한 기회와 과제</div>
+    <div class="matrix">
+      <div class="matrix-cell">
+        <div class="matrix-head" style="color:#dc2626">🔴 물류·SCM</div>
+        <ul class="matrix-list">
+          <li>AI 기반 재고 보충 자동화 — S3 RELEX 아키텍처(시나리오 모델링, Planner Diagnostics) 패션 특화 적용 가능성</li>
+          <li>수요 급변 대응 체계 — 시즌 전환, 한정 드랍, 콜라보 이벤트 시 재고 충격 시뮬레이션</li>
+          <li>공급업체 협업 강화 — RELEX의 공급업체 페널티 계산 자동화·발주 예측 공유 모델</li>
+          <li>SCM 데이터 표준화 — S5 MUJI가 먼저 해결한 마스터 데이터 거버넌스 문제 동일하게 존재</li>
+        </ul>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-head" style="color:#2563eb">🔵 플랫폼·커머스</div>
+        <ul class="matrix-list">
+          <li>Desire 기반 커머스 — S1 LVMH가 제시한 소비자가 요청하기 전 열망을 만드는 큐레이션 모델</li>
+          <li>Agentic AI 쇼핑 에이전트 — S4 Google Macy's 사례처럼 구매 전·중·후 전 여정 AI 지원</li>
+          <li>로열티 프로그램 강화 — S2 DFI의 탈중개화 대응 전략: 직접 고객 관계가 AI 시대의 핵심 방어</li>
+          <li>엔터테인먼트 브랜딩 — S1 LVMH 22 Montana 모델: 드라마·콘텐츠에 브랜드 유기적 통합</li>
+        </ul>
+      </div>
+      <div class="matrix-cell">
+        <div class="matrix-head" style="color:#059669">🟢 글로벌 확장</div>
+        <ul class="matrix-list">
+          <li>글로벌/지역 이중 데이터 구조 — S5 MUJI 프레임워크: 표준화할 것 vs. 현지 자율에 맡길 것 구분</li>
+          <li>SEA 시장 물류 파트너 — MUJI SEA 118개 매장 운영사의 현지 공급망 노하우</li>
+          <li>K-pop × 글로벌 브랜드 앰배서더 — S1 LVMH의 예상치 못한 미국 연결 효과 사례</li>
+          <li>사이버보안 — S2 DFI: 아시아 위계문화의 취약점 인식 + R-HISAC 같은 협력 체계</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 파트너십 후보 -->
+  <div class="insight-section" id="i-partners">
+    <h2>세션 기반 파트너십 검토 대상</h2>
+    <div class="sub">발표 내용과 현장 네트워킹을 바탕으로 도출한 기술 파트너십 후보</div>
+    <table class="ptable">
+      <tr>
+        <th>업체</th>
+        <th>근거 세션</th>
+        <th>핵심 역량</th>
+        <th>검토 포인트</th>
+        <th>우선순위</th>
+      </tr>
+      <tr>
+        <td><strong><a href="https://www.relexsolutions.com" target="_blank">RELEX Solutions</a></strong></td>
+        <td>S3</td>
+        <td>SCM AI, 수요 예측, Agentic 보충</td>
+        <td>패션 시즌성 SKU 특화 모델 존재 여부 / 한국 레퍼런스</td>
+        <td><span class="p-badge p1">1순위</span></td>
+      </tr>
+      <tr>
+        <td><strong><a href="https://www.stibosystems.com" target="_blank">Stibo Systems</a></strong></td>
+        <td>S5</td>
+        <td>MDM / PIM, 데이터 거버넌스, AI Ready</td>
+        <td>멀티 브랜드 파트너 상품 데이터 표준화 / MUJI 레퍼런스 상세</td>
+        <td><span class="p-badge p1">1순위</span></td>
+      </tr>
+      <tr>
+        <td><strong><a href="https://cloud.google.com/solutions/retail" target="_blank">Google Cloud Retail</a></strong></td>
+        <td>S4</td>
+        <td>Agentic AI, 검색·추천, Vertex AI</td>
+        <td>패션 버티컬 특화 솔루션 / FairPrice 구현 사례 상세</td>
+        <td><span class="p-badge p1">1순위</span></td>
+      </tr>
+      <tr>
+        <td><strong><a href="https://blueyonder.com" target="_blank">Blue Yonder</a></strong></td>
+        <td>S3 (언급)</td>
+        <td>SCM AI, 풀필먼트 최적화</td>
+        <td>RELEX 대안 / H&M 패션 레퍼런스 보유</td>
+        <td><span class="p-badge p2">2순위</span></td>
+      </tr>
+      <tr>
+        <td><strong><a href="https://www.centricsoftware.com" target="_blank">Centric Software</a></strong></td>
+        <td>의제 분석</td>
+        <td>패션 PLM, 상품 기획~생산 AI</td>
+        <td>Levi's APAC 레퍼런스 / 한국 패션 플랫폼 적용 사례</td>
+        <td><span class="p-badge p2">2순위</span></td>
+      </tr>
+      <tr>
+        <td><strong><a href="https://www.vusion.com" target="_blank">Vusion</a></strong></td>
+        <td>Lunch (6/2)</td>
+        <td>ESL, Connected Store IoT</td>
+        <td>패션 소형 매장 패키지 / 한국 파트너사</td>
+        <td><span class="p-badge p2">2순위</span></td>
+      </tr>
+      <tr>
+        <td><strong><a href="https://www.dfiretailgroup.com" target="_blank">DFI Retail Group</a></strong></td>
+        <td>S2</td>
+        <td>APAC 물류·리테일 운영</td>
+        <td>SEA 물류 인프라 협력 / R-HISAC 가입 정보</td>
+        <td><span class="p-badge p3">참고</span></td>
+      </tr>
+    </table>
+  </div>
+
+</main>
+
+<footer style="background:#0f172a;color:#475569;text-align:center;padding:20px;font-size:13px">
+  NRF APAC 2026 · 인사이트 연결 분석 &nbsp;|&nbsp;
+  <a href="https://nrfbigshowapac.nrf.com/agenda" target="_blank" style="color:#38bdf8">공식 Agenda</a>
+</footer>
+
+</body>
+</html>
